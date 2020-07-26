@@ -1,0 +1,59 @@
+<script>
+	var prod_price = parseFloat(document.querySelector('').textContent);
+	var prod_name = document.querySelector('').textContent;
+	var prod_id = document.querySelector('');
+	var prod_cat = document.querySelector('').textContent;
+
+	fbq('track', 'AddToCart',
+		{
+			content_category: prod_cat,
+			content_name: prod_name,
+			value: prod_price,
+			currency: 'EUR',
+			content_type: 'product',
+			content_ids: prod_id
+		}
+	);
+</script>
+
+<script>
+	var prod_price = parseFloat(document.querySelector('').textContent);
+	var prod_name = document.querySelector('').textContent;
+	var prod_id = document.querySelector('');
+	var prod_cat = document.querySelector('').textContent;
+
+	fbq('track', 'ViewContent',
+		{
+			content_category: prod_cat,
+			content_name: prod_name,
+			value: prod_price,
+			currency: 'EUR',
+			content_type: 'product',
+			content_ids: prod_id
+		}
+	);
+</script>
+
+<script>
+	var total_price = parseFloat(document.querySelector('').textContent);
+
+	fbq('track', 'InitiateCheckout',
+		{
+			value: total_price,
+			product_type: 'product',
+			currency: 'EUR'
+		}
+	);
+</script>
+
+<script>
+	var total_price = parseFloat(document.querySelector('').textContent);
+
+	fbq('track', 'Purchase',
+		{
+			value: total_price,
+			product_type: 'product',
+			currency: 'EUR'
+		}
+	);
+</script>
