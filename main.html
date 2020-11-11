@@ -1,47 +1,91 @@
+<!-- ViewContent -->
 <script>
 	var prod_price = parseFloat(document.querySelector('').textContent);
 	var prod_name = document.querySelector('').textContent;
 	var prod_id = document.querySelector('');
 	var prod_cat = document.querySelector('').textContent;
+
+	ga('ec:addImpression',
+		{
+			id: prod_id,
+			name: prod_name,
+			category: prod_cat,
+			price: prod_price
+		}
+	);
+</script>
+
+<!-- AddToCart -->
+<script>
+	var prod_price = parseFloat(document.querySelector('').textContent);
+	var prod_name = document.querySelector('').textContent;
+	var prod_id = document.querySelector('');
+	var prod_cat = document.querySelector('').textContent;
+
+	ga('ec:addProduct',
+		{
+			id: prod_id,
+			name: prod_name,
+			category: prod_cat,
+			price: prod_price,
+			quantity: 1
+		}
+	);
+</script>
+
+<script>
+	var prod_price = parseFloat(document.querySelector('').textContent);
+	var prod_name = document.querySelector('').textContent;
+	var prod_id = document.querySelector(');
+	var prod_cat = document.querySelectorAll('')).textContent;
 
 	fbq('track', 'AddToCart',
 		{
 			content_category: prod_cat,
 			content_name: prod_name,
 			value: prod_price,
-			currency: 'EUR',
+			currency: 'MDL',
 			content_type: 'product',
-			content_ids: prod_id
+			content_ids: [prod_id]
 		}
 	);
 </script>
 
 <script>
-	var prod_price = parseFloat(document.querySelector('').textContent);
+	var prod_price = parseFloat(document.querySelector(').textContent);
 	var prod_name = document.querySelector('').textContent;
 	var prod_id = document.querySelector('');
-	var prod_cat = document.querySelector('').textContent;
+	var prod_cat = document.querySelector('')).textContent;
 
 	fbq('track', 'ViewContent',
 		{
 			content_category: prod_cat,
 			content_name: prod_name,
 			value: prod_price,
-			currency: 'EUR',
+			currency: 'MDL',
 			content_type: 'product',
-			content_ids: prod_id
+			content_ids: [prod_id]
 		}
 	);
 </script>
 
 <script>
+	var contents = []
+
 	var total_price = parseFloat(document.querySelector('').textContent);
+
+	document.querySelectorAll('.checkout .prod__card').forEach(function(el, i) {
+		var id = el.querySelector('').dataset.id
+		var qty = parseInt(el.querySelector('').value)
+		contents.push({id: id, quantity: qty})
+	})
 
 	fbq('track', 'InitiateCheckout',
 		{
 			value: total_price,
 			product_type: 'product',
-			currency: 'EUR'
+			contents: contents,
+			currency: 'MDL'
 		}
 	);
 </script>
@@ -53,7 +97,7 @@
 		{
 			value: total_price,
 			product_type: 'product',
-			currency: 'EUR'
+			currency: 'MDL'
 		}
 	);
 </script>
